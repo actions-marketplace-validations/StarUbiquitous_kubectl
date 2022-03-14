@@ -1,6 +1,6 @@
-name: 'Kuberentes (k8s) cli - kubectl'
+name: 'starubiquitous kubectl cli'
 description: 'GitHub Action for interacting with kubectl (k8s)'
-author: 'Serhiy Mytrovtsiy <mitrovtsiy@ukr.net>'
+author: 'meakawa <meakawa@icloud.com>'
 branding:
   icon: 'terminal'
   color: 'blue'
