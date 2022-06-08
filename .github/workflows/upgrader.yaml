@@ -65,23 +65,25 @@ jobs:
         id: modify
         if: success() && steps.check.outputs.newest == 'yes' && steps.test.outputs.exist == 'yes'
         run: |
+          git config --global url."https://${{ secrets.ACTIONS_BOT_TOKEN }}:@github.com/".insteadOf "https://github.com/"
+          git config --global user.name "Starfire Bot"
+          git config --global user.email "cloud@xnxk.com"
+          git checkout master
           FROM_LINE="ARG KUBE_VERSION=\"$LATEST_VERSION\""
           TO_LINE="ARG KUBE_VERSION=\"$SDK_VERSION\""
           sed -i "s/${FROM_LINE}/${TO_LINE}/" $GITHUB_WORKSPACE/Dockerfile
+          git add $GITHUB_WORKSPACE/Dockerfile
+          git commit -m "updated kubectl to $SDK_VERSION"
+          git push
           echo ::set-output name=tag::$SDK_VERSION
 
-      - name: Create Pull Request
-        if: success() && steps.check.outputs.newest == 'yes' && steps.test.outputs.exist == 'yes'
-        id: cpr
-        uses: peter-evans/create-pull-request@v4
+      - name: Create new release
+        if: success() && steps.modify.outputs.tag != '0'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_BOT_TOKEN }}
         with:
-          token: ${{ secrets.ACTIONS_BOT_TOKEN }}
-          commit-message: "feat: updated kubectl to ${{ steps.modify.outputs.tag }}"
-          title: "feat: updated kubectl to ${{ steps.modify.outputs.tag }}"
-          branch-suffix: short-commit-hash
-          branch: updated-kubectl
-          delete-branch: true
-      - name: Check outputs
-        run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+          tag_name: ${{ steps.modify.outputs.tag }}
+          release_name: ${{ steps.modify.outputs.tag }}
+          draft: false
+          prerelease: false
