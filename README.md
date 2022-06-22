@@ -1,6 +1,17 @@
-# kubectl
+# Kubectl
 
 [![Preview](https://serhiy.s3.eu-central-1.amazonaws.com/Github_repo/kubectl/logo.png)](https://cloud.google.com)
+
+[![Release Images](https://github.com/StarUbiquitous/kubectl/actions/workflows/image.yml/badge.svg)](https://github.com/StarUbiquitous/kubectl/actions/workflows/image.yml)
+[![SDK version upgrade](https://github.com/StarUbiquitous/kubectl/actions/workflows/upgrader.yaml/badge.svg)](https://github.com/StarUbiquitous/kubectl/actions/workflows/upgrader.yaml)
+[![Tests](https://github.com/StarUbiquitous/kubectl/actions/workflows/tests.yaml/badge.svg)](https://github.com/StarUbiquitous/kubectl/actions/workflows/tests.yaml)
+
+![Platform](https://img.shields.io/badge/Platform-linux%2Famd64-brightgreen?style=flat-square&logo=linux)
+![Platform](https://img.shields.io/badge/Platform-linux%2Farm64-brightgreen?style=flat-square&logo=linux)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/starubiquitous/kubectl/master?style=flat-square)
+[![LICENSE](https://img.shields.io/badge/License-Anti%20996-blue.svg?style=flat-square)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/badge/License-Apache--2.0-green.svg?style=flat-square)](LICENSE-APACHE)
+[![996.icu](https://img.shields.io/badge/Link-996.icu-red.svg?style=flat-square)](https://996.icu)
 
 GitHub Action for interacting with kubectl ([k8s](https://kubernetes.io))
 
